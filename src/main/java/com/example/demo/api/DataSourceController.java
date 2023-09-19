@@ -2,6 +2,7 @@ package com.example.demo.api;
 
 import com.example.demo.dto.DatabasePingResultDto;
 import com.example.demo.dto.DatasourceDto;
+import com.example.demo.dto.PingAllJobDto;
 import com.example.demo.services.DataSourceService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -21,16 +22,21 @@ public class DataSourceController {
 
     @PostMapping("/add-datasource")
     public void addDataSource(@RequestBody DatasourceDto dto) {
-        dataSourceService.addDatasource(dto);
+        dataSourceService.addDataSource(dto);
     }
 
     @PostMapping("/add-datasources")
     public void addDataSources(@RequestBody List<DatasourceDto> dtos) {
-        dataSourceService.addDatasources(dtos);
+        dataSourceService.addDataSources(dtos);
     }
 
     @PostMapping("/ping-all")
     public Collection<DatabasePingResultDto> pingAll() {
         return dataSourceService.pingAll();
+    }
+
+    @PostMapping("/ping-all-job")
+    public void pingAllJob(@RequestBody PingAllJobDto dto){
+        dataSourceService.pingAllJob(dto);
     }
 }
